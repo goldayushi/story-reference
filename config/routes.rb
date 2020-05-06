@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   get 'characters', to: 'characters#index'
   get 'characters/new', to: 'characters#new'
   post 'characters', to: 'characters#create'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'characters/:id', to: 'characters#show'
 end

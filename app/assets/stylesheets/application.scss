@@ -31,10 +31,11 @@ $secondary-color: color("lime", "lighten-4") !default;
   }
 }
 
-#butten-link {
+#submit {
   color: #fff;
 }
 
-#submit {
-  color: #fff;
+label {
+  font-size: 1em;
+  margin-right: 1em;
 }

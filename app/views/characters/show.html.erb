@@ -1,0 +1,43 @@
+<div class="d-flex align-items-center">
+  <h1 class="center-align">詳細情報</h1>
+</div>
+<div class="row">
+  <a><%= link_to "戻る", characters_path, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+  <a><%= link_to "編集", '#', class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+</div>
+<div class="row">
+  <table>
+    <tr>
+      <td width="10%"><label>名前</label></td>
+      <td><%= @character.name %></td>
+      <td width="10%"><label>役割</label></td>
+      <td><%= @character.role %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>役職</label></td>
+      <td colspan="3"><%= @character.position %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>国</label></td>
+      <td><%= @character.countory %></td>
+      <td width="10%"><label>出身地</label></td>
+      <td><%= @character.birthplace %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>経歴</label></td>
+      <td colspan="3"><%= @character.career %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>人物</label></td>
+      <td colspan="3"><%= @character.person %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>初登場話</label></td>
+      <td colspan="3"><%= @character.appearance_chapter %></td>
+    </tr>
+  </table> 
+</div>
+<div class="row">
+  <a><%= link_to "戻る", characters_path, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+  <a><%= link_to "編集", '#', class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+</div>
