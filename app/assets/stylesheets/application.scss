@@ -16,10 +16,9 @@
 */
 @import "materialize/components/color-variables";
 $primary-color: color("brown", "lighten-2") !default;
-$secondary-color: color("yellow", "base") !default;
+$secondary-color: color("lime", "lighten-4") !default;
 @import "materialize";
 
-/* typography */
 #logo {
   float: left;
   margin-left: 10px;
@@ -30,4 +29,12 @@ $secondary-color: color("yellow", "base") !default;
     color: #fff;
     text-decoration: none;
   }
+}
+
+#butten-link {
+  color: #fff;
+}
+
+#submit {
+  color: #fff;
 }

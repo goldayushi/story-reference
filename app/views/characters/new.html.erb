@@ -1,0 +1,57 @@
+<div class="d-flex align-items-center">
+  <h1 class="center-align">新規作成</h1>
+  <div class="waves-effect waves-light btn brown">
+    <a><%= link_to "戻る", characters_path, style: 'color:white;' %></a>
+  </div>
+</div>
+<div class="row">
+    <%= form_for(@character, url: characters_path, method: :post) do |f| %>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.label :name, '名前' %>
+          <%= f.text_field :name, class: 'validate' %>
+        </div>
+        <div class="input-field col s6">
+          <%= f.label :role, '役割' %>
+          <%= f.text_field :role, class: 'validate' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.label :position, '役職' %>
+          <%= f.text_field :position, class: 'validate' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.label :countory, '国' %>
+          <%= f.text_field :countory, class: 'validate' %>
+        </div>
+        <div class="input-field col s6">
+          <%= f.label :birthplace, '出身地' %>
+          <%= f.text_field :birthplace, class: 'validate' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.label :career, '経歴' %>
+          <%= f.text_area :career, class: 'materialize-textarea', rows:10 %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.label :person, '人物' %>
+          <%= f.text_area :person, class: 'materialize-textarea', rows:20 %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.label :appearance_chapter, '初登場話' %>
+          <%= f.number_field :appearance_chapter, class: 'validate' %>
+        </div>
+      </div>
+      <div class="row">
+        <%= f.submit '登録', class: 'btn waves-effect waves-light brown', id: 'submit' %>
+      </div>
+    <% end %>
+</div>

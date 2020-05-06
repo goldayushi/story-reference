@@ -1,0 +1,36 @@
+<div>
+    <h1 class="center-align">登場人物一覧</h1>
+    <div>
+      <a class="btn-floating btn-large waves-effect waves-light brown" href="/characters/new" role="button"><i class="material-icons">add</i></a>
+    </div>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>役割</th>
+      <th>役職</th>
+      <th>出身地</th>
+      <th>処理</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @characters.length == 0 %>
+      対象のデータはありません。
+    <% else %>  
+      <% @characters.each do |character| %>
+        <tr>
+          <td><%= character.name %></td>
+          <td><%= character.role %></td>
+          <td><%= character.position %></td>
+          <td><%= character.birthplace %></td>
+          <td>
+            <%= link_to "詳細", '#', class: 'waves-effect waves-light btn brown' %>
+            <%= link_to "削除", '#', class: 'waves-effect waves-light btn brown' %>
+            <%= link_to "編集", '#', class: 'waves-effect waves-light btn brown' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
