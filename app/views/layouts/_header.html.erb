@@ -1,16 +1,27 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "設定資料集", root_path, id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav">
-        <li class="nav-item"><%= link_to "トップ",   '#' %></li>
-        <li class="nav-item"><%= link_to "キャラクター",   '#' %></li>
-        <li class="nav-item"><%= link_to "エピソード",   '#' %></li>
-        <li class="nav-item"><%= link_to "年表",   '#' %></li>
-        <li class="nav-item"><%= link_to "用語集",   '#' %></li>
-        <li class="nav-item"><%= link_to "画像庫",   '#' %></li>
-        <li class="nav-item"><%= link_to "Log in", '#' %></li>
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a class="brand-logo"><%= link_to "設定資料集", root_path, id: "logo" %></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><%= link_to "トップ", '#' %></li>
+        <li><%= link_to "キャラクター", '#' %></li>
+        <li><%= link_to "エピソード", '#' %></li>
+        <li><%= link_to "年表", '#' %></li>
+        <li><%= link_to "用語集", '#' %></li>
+        <li><%= link_to "画像庫", '#' %></li>
+        <li><%= link_to "Log in", '#' %></li>
       </ul>
-    </nav>
-  </div>
-</header>
+    </div>
+  </nav>
+</div>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><%= link_to "トップ", '#' %></li>
+  <li><%= link_to "キャラクター", '#' %></li>
+  <li><%= link_to "エピソード", '#' %></li>
+  <li><%= link_to "年表", '#' %></li>
+  <li><%= link_to "用語集", '#' %></li>
+  <li><%= link_to "画像庫", '#' %></li>
+  <li><%= link_to "Log in", '#' %></li>
+</ul>
