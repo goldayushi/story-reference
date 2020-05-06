@@ -3,7 +3,7 @@
 </div>
 <div class="row">
   <a><%= link_to "戻る", characters_path, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
-  <a><%= link_to "編集", '#', class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+  <a><%= link_to "編集", "#{@character.id}/edit", class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
 </div>
 <div class="row">
   <table>
@@ -39,5 +39,5 @@
 </div>
 <div class="row">
   <a><%= link_to "戻る", characters_path, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
-  <a><%= link_to "編集", '#', class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+  <a><%= link_to "編集", "#{@character.id}/edit", class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
 </div>

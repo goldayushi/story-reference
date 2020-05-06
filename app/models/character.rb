@@ -4,5 +4,4 @@ class Character < ApplicationRecord
 	validates :position, length: { maximum: 100 }
 	validates :countory, length: { maximum: 50 }
 	validates :birthplace, length: { maximum: 50 }
-	validates :appearance_chapter, numericality: true
 end

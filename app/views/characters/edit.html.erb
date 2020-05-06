@@ -1,52 +1,52 @@
 <div class="d-flex align-items-center">
-  <h1 class="center-align">新規作成</h1>
+  <h1 class="center-align">編集</h1>
 </div>
 <div class="row">
   <a><%= link_to "戻る", characters_path, class: 'waves-effect waves-light btn brown' %></a>
 </div>
 <div class="row">
-  <%= form_with model: @character, url: "/characters" do |f| %>
+  <%= form_with model: @character, url: "/characters/#{@character.id}" do |f| %>
     <div class="row">
       <div class="input-field col s6">
-        <%= f.label :name, '名前' %>
+        <%= f.label :name, '名前', class: 'active' %>
         <%= f.text_field :name, class: 'validate' %>
       </div>
       <div class="input-field col s6">
-        <%= f.label :role, '役割' %>
+        <%= f.label :role, '役割', class: 'active' %>
         <%= f.text_field :role, class: 'validate' %>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <%= f.label :position, '役職' %>
+        <%= f.label :position, '役職', class: 'active' %>
         <%= f.text_field :position, class: 'validate' %>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <%= f.label :countory, '国' %>
+        <%= f.label :countory, '国', class: 'active' %>
         <%= f.text_field :countory, class: 'validate' %>
       </div>
       <div class="input-field col s6">
-        <%= f.label :birthplace, '出身地' %>
+        <%= f.label :birthplace, '出身地', class: 'active' %>
         <%= f.text_field :birthplace, class: 'validate' %>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <%= f.label :career, '経歴' %>
+        <%= f.label :career, '経歴', class: 'active' %>
         <%= f.text_area :career, class: 'materialize-textarea', rows:10 %>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <%= f.label :person, '人物' %>
+        <%= f.label :person, '人物', class: 'active' %>
         <%= f.text_area :person, class: 'materialize-textarea', rows:20 %>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <%= f.label :appearance_chapter, '初登場話' %>
+        <%= f.label :appearance_chapter, '初登場話', class: 'active' %>
         <%= f.number_field :appearance_chapter, class: 'validate' %>
       </div>
     </div>
