@@ -27,7 +27,7 @@
           <td>
             <%= link_to "詳細", "characters/#{character.id}", class: 'waves-effect waves-light btn brown' %>
             <%= link_to "編集", "characters/#{character.id}/edit", class: 'waves-effect waves-light btn brown' %>
-            <%= link_to "削除", "characters/#{character.id}/delete", method: :delete, class: 'waves-effect waves-light btn brown' %>
+            <%= link_to "削除", "characters/#{character.id}/delete", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
           </td>
         </tr>
       <% end %>

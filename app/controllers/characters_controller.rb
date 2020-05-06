@@ -12,7 +12,6 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(character_params)
     if @character.save
-      flash[:info] = "登録完了しました"
       redirect_to characters_path
     else
       render 'new'
@@ -27,7 +26,6 @@ class CharactersController < ApplicationController
 
   def update
     if @character.update(character_params)
-      flash[:info] = "登録完了しました"
       redirect_to "/characters/#{@character.id}"
     else
       render 'new'
@@ -36,7 +34,6 @@ class CharactersController < ApplicationController
 
   def destroy
     if @character.destroy
-      flash[:success] = "削除しました"
       redirect_to characters_path
     else
       render 'index'
