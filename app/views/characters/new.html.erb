@@ -5,11 +5,13 @@
   <a><%= link_to "戻る", characters_path, class: 'waves-effect waves-light btn brown' %></a>
 </div>
 <div class="row">
-  <%= form_with model: @character, url: "/characters" do |f| %>
+  <%= form_with model: @character, url: "/characters", local: true do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
     <div class="row">
       <div class="input-field col s6">
         <%= f.label :name, '名前' %>
         <%= f.text_field :name, class: 'validate' %>
+        <span class="helper-text" data-error="必ず入力してください" data-success="Perfect!"></span>
       </div>
       <div class="input-field col s6">
         <%= f.label :role, '役割' %>
