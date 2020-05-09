@@ -2,7 +2,8 @@ class EpisodesController < ApplicationController
   before_action :set_episode, only: [:show, :edit, :update, :destroy]
   
   def index
-    @episodes = Episode.all.order(chapter: :desc).page(params[:page]).per(10)
+    @q = Episode.ransack(params[:q])
+    @episodes = @q.result(distinct: true).order(:chapter).page(params[:page]).per(10)
   end
 
   def new

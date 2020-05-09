@@ -8,11 +8,11 @@
 <table>
   <thead>
     <tr>
-      <th>話</th>
+      <th><%= sort_link (@q, :chapter, "話") %></th>
       <th>タイトル</th>
       <th>概要</th>
       <th>区分</th>
-      <th>西暦</th>
+      <th><%= sort_link(@q, :year, "西暦") %></th>
       <th>処理</th>
     </tr>
   </thead>
