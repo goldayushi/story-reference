@@ -33,6 +33,11 @@ class EpisodesController < ApplicationController
   end
 
   def destroy
+    if @episode.destroy
+      redirect_to episodes_path
+    else
+      render 'index'
+    end
   end
 
   private

@@ -1,11 +1,7 @@
 <div class="d-flex align-items-center">
   <h1 class="center-align">詳細情報</h1>
 </div>
-<div class="row right">
-  <a><%= link_to "戻る", characters_path, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
-  <a><%= link_to "編集", "#{@character.id}/edit", class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
-  <a><%= link_to "削除", "#{@character.id}/delete", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
-</div>
+<%= render 'characters/button_show' %>
 <div class="row">
   <table>
     <tr>
@@ -38,8 +34,4 @@
     </tr>
   </table> 
 </div>
-<div class="row right">
-  <a><%= link_to "戻る", characters_path, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
-  <a><%= link_to "編集", "#{@character.id}/edit", class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
-  <a><%= link_to "削除", "#{@character.id}/delete", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
-</div>
+<%= render 'characters/button_show' %>

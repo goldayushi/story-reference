@@ -1,18 +1,12 @@
 Rails.application.routes.draw do
-  get 'episodes', to: 'episodes#index'
-  get 'episodes/new', to: 'episodes#new'
-  post 'episodes', to: 'episodes#create'
-  get 'episodes/:id', to: 'episodes#show'
-  get 'episodes/:id/edit', to: 'episodes#edit'
-  patch 'episodes/:id', to: 'episodes#update'
-  get 'episodes/destroy'
   root 'home#top'
-  get 'characters', to: 'characters#index'
-  get 'characters/search', to: 'characters#search'
-  get 'characters/new', to: 'characters#new'
-  post 'characters', to: 'characters#create'
-  get 'characters/:id', to: 'characters#show'
-  get 'characters/:id/edit', to: 'characters#edit'
-  patch 'characters/:id', to: 'characters#update'
-  delete 'characters/:id/delete', to: 'characters#destroy'
+  resources :characters
+  resources :episodes
+  #get 'episodes', to: 'episodes#index'
+  #get 'episodes/new', to: 'episodes#new'
+  #post 'episodes', to: 'episodes#create'
+  #get 'episodes/:id', to: 'episodes#show'
+  #get 'episodes/:id/edit', to: 'episodes#edit'
+  #patch 'episodes/:id', to: 'episodes#update'
+  #delete 'episodes/:id', to: 'episodes#destroy'
 end
