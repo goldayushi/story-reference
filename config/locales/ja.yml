@@ -22,6 +22,12 @@ ja:
         keyitem: 'キーアイテム'
         division: '区分'
         year: '西暦'
+      chronology:
+        year: '西暦'
+        japan_event: '倭国'
+        korea_event: '朝鮮半島'
+        china_event: '中国'
+        other_event: 'その他'
   helpers:
     select:
       prompt: 選択してください
