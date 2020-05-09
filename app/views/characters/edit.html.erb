@@ -6,6 +6,7 @@
 </div>
 <div class="row">
   <%= form_with model: @character, url: "/characters/#{@character.id}" do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
     <div class="row">
       <div class="input-field col s6">
         <%= f.label :name, '名前', class: 'active' %>

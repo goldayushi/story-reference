@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="input-field col s6">
+    <%= f.label :chapter, '話' %>
+    <%= f.number_field :chapter, class: 'validate' %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label :title, 'タイトル' %>
+    <%= f.text_field :title, class: 'validate' %>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.label :overview, '概要' %>
+    <%= f.text_area :overview, class: 'materialize-textarea', rows:10 %>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.label :content, '内容' %>
+    <%= f.text_area :content, class: 'materialize-textarea', rows:50 %>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.label :set, '舞台' %>
+    <%= f.text_field :set, class: 'validate' %>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s6">
+    <%= f.label :keyword, 'キーワード' %>
+    <%= f.text_field :keyword, class: 'validate' %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label :keyitem, 'キーアイテム' %>
+    <%= f.text_field :keyitem, class: 'validate' %>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s6">
+    <%= f.label :division, '区分' %>
+    <%= f.text_field :division, class: 'validate' %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label :year, '西暦' %>
+    <%= f.number_field :year, class: 'validate' %>
+  </div>
+</div>
+<div class="row">
+  <%= f.submit '登録', class: 'btn waves-effect waves-light brown', id: 'submit' %>
+</div>

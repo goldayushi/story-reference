@@ -1,2 +1,47 @@
-<h1>Episodes#show</h1>
-<p>Find me in app/views/episodes/show.html.erb</p>
+<div class="d-flex align-items-center">
+  <h1 class="center-align">詳細情報</h1>
+</div>
+<div class="row right">
+  <a><%= link_to "戻る", episodes_path, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+  <a><%= link_to "編集", "#{@episode.id}/edit", class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+  <a><%= link_to "削除", "#{@episode.id}/delete", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+</div>
+<div class="row">
+  <table>
+    <tr>
+      <td width="10%"><label>話</label></td>
+      <td><%= @episode.chapter %></td>
+      <td width="15%"><label>タイトル</label></td>
+      <td><%= @episode.title %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>概要</label></td>
+      <td colspan="3"><%= @episode.overview %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>内容</label></td>
+      <td colspan="3"><%= @episode.content %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>舞台</label></td>
+      <td colspan="3"><%= @episode.set %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>キーワード</label></td>
+      <td><%= @episode.keyword %></td>
+      <td width="15%"><label>キーアイテム</label></td>
+      <td><%= @episode.keyitem %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>区分</label></td>
+      <td><%= @episode.division %></td>
+      <td width="15%"><label>西暦</label></td>
+      <td><%= @episode.year %></td>
+    </tr>
+  </table> 
+</div>
+<div class="row right">
+  <a><%= link_to "戻る", episodes_path, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+  <a><%= link_to "編集", "#{@episode.id}/edit", class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+  <a><%= link_to "削除", "#{@episode.id}/delete", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+</div>

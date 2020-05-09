@@ -28,9 +28,9 @@
           <td><%= episode.division %></td>
           <td><%= episode.year %></td>
           <td>
-            <%= link_to "詳細", "characters/#{episode.id}", class: 'waves-effect waves-light btn brown' %>
-            <%= link_to "編集", "characters/#{episode.id}/edit", class: 'waves-effect waves-light btn brown' %>
-            <%= link_to "削除", "characters/#{episode.id}/delete", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+            <%= link_to "詳細", "episodes/#{episode.id}", class: 'waves-effect waves-light btn brown' %>
+            <%= link_to "編集", "episodes/#{episode.id}/edit", class: 'waves-effect waves-light btn brown' %>
+            <%= link_to "削除", "episodes/#{episode.id}/delete", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
           </td>
         </tr>
       <% end %>

@@ -1,2 +1,62 @@
-<h1>Episodes#edit</h1>
-<p>Find me in app/views/episodes/edit.html.erb</p>
+<div class="d-flex align-items-center">
+  <h1 class="center-align">編集</h1>
+</div>
+<div class="row">
+  <a><%= link_to "戻る", episodes_path, class: 'waves-effect waves-light btn brown' %></a>
+</div>
+<div class="row">
+  <%= form_with model: @episode, url: "/episodes/#{@episode.id}", local: true do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+    <div class="row">
+      <div class="input-field col s6">
+        <%= f.label :chapter, '話', class: 'active' %>
+        <%= f.number_field :chapter, class: 'validate' %>
+      </div>
+      <div class="input-field col s6">
+        <%= f.label :title, 'タイトル', class: 'active' %>
+        <%= f.text_field :title, class: 'validate' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :overview, '概要', class: 'active' %>
+        <%= f.text_area :overview, class: 'materialize-textarea', rows:10 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :content, '内容', class: 'active' %>
+        <%= f.text_area :content, class: 'materialize-textarea', rows:50 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :set, '舞台', class: 'active' %>
+        <%= f.text_field :set, class: 'validate' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <%= f.label :keyword, 'キーワード', class: 'active' %>
+        <%= f.text_field :keyword, class: 'validate' %>
+      </div>
+      <div class="input-field col s6">
+        <%= f.label :keyitem, 'キーアイテム', class: 'active' %>
+        <%= f.text_field :keyitem, class: 'validate' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <%= f.label :division, '区分', class: 'active' %>
+        <%= f.text_field :division, class: 'validate' %>
+      </div>
+      <div class="input-field col s6">
+        <%= f.label :year, '西暦', class: 'active' %>
+        <%= f.number_field :year, class: 'validate' %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.submit '登録', class: 'btn waves-effect waves-light brown', id: 'submit' %>
+    </div>
+  <% end %>
+</div>
