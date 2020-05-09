@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   #get 'episodes/:id/edit', to: 'episodes#edit'
   #patch 'episodes/:id', to: 'episodes#update'
   #delete 'episodes/:id', to: 'episodes#destroy'
+  resources :chronologies
 end

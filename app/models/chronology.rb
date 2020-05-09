@@ -1,0 +1,2 @@
+class Chronology < ApplicationRecord
+end

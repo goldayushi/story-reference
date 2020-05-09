@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  year: 1
+  japan_event: MyText
+  korea_event: MyText
+  china_event: MyText
+  other_event: MyText
+
+two:
+  year: 1
+  japan_event: MyText
+  korea_event: MyText
+  china_event: MyText
+  other_event: MyText

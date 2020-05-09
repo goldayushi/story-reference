@@ -1,0 +1,39 @@
+<div>
+  <h1 class="center-align">年表</h1>
+  <div class="right">
+    <a class="btn-floating btn-large waves-effect waves-light brown" href="/chronologies/new" role="button"><i class="material-icons">add</i></a>
+  </div>
+</div>
+<%= paginate @chronologies %>
+<table class="responsive-table">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :year, "西暦") %></th>
+      <th>倭国</th>
+      <th>朝鮮半島</th>
+      <th>中国</th>
+      <th>その他</th>
+      <th>処理</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @chronologies.length == 0 %>
+      対象のデータはありません。
+    <% else %>  
+      <% @chronologies.each do |chronology| %>
+        <tr>
+          <td><%= chronology.year %></td>
+          <td><%= chronology.japan_event %></td>
+          <td><%= chronology.korea_event %></td>
+          <td><%= chronology.china_event %></td>
+          <td><%= chronology.other_event %></td>
+          <td>
+            <%= link_to "編集", "chronologiess/#{chronology.id}/edit", class: 'waves-effect waves-light btn brown' %>
+            <%= link_to "削除", "chronologiess/#{chronology.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @chronologies %>
