@@ -19,6 +19,10 @@ $primary-color: color("brown", "lighten-2") !default;
 $secondary-color: color("lime", "lighten-4") !default;
 @import "materialize";
 
+h1 {
+  font-size: 3rem;
+}
+
 #logo {
   float: left;
   margin-left: 10px;
