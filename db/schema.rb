@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_055334) do
+ActiveRecord::Schema.define(version: 2020_05_09_045921) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(version: 2020_05_06_055334) do
     t.text "career"
     t.text "person"
     t.integer "appearance_chapter"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "episodes", force: :cascade do |t|
+    t.integer "chapter"
+    t.string "title"
+    t.text "overview"
+    t.text "content"
+    t.string "set"
+    t.string "keyword"
+    t.string "keyitem"
+    t.string "division"
+    t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

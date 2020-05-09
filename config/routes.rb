@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'episodes/index'
+  get 'episodes/new'
+  get 'episodes/create'
+  get 'episodes/show'
+  get 'episodes/edit'
+  get 'episodes/update'
+  get 'episodes/destroy'
   root 'home#top'
   get 'characters', to: 'characters#index'
   get 'characters/new', to: 'characters#new'
