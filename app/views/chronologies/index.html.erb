@@ -1,3 +1,4 @@
+<div style="overflow-y:scroll;">
 <div>
   <h1 class="center-align">年表</h1>
   <div class="right">
@@ -5,7 +6,7 @@
   </div>
 </div>
 <%= paginate @chronologies %>
-<table class="responsive-table">
+<table width="1200" class="responsive-table">
   <thead>
     <tr>
       <th><%= sort_link(@q, :year, "西暦") %></th>
@@ -23,13 +24,33 @@
       <% @chronologies.each do |chronology| %>
         <tr>
           <td><%= chronology.year %></td>
-          <td><%= chronology.japan_event %></td>
-          <td><%= chronology.korea_event %></td>
-          <td><%= chronology.china_event %></td>
-          <td><%= chronology.other_event %></td>
           <td>
-            <%= link_to "編集", "chronologies/#{chronology.id}/edit", class: 'waves-effect waves-light btn brown' %>
-            <%= link_to "削除", "chronologies/#{chronology.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+            <div style="height:150px; width:200px; overflow-x:scroll;">
+              <%= chronology.japan_event %>
+            </div>
+          </td>
+          <td>
+            <div style="height:150px; width:200px; overflow-x:scroll;">
+              <%= chronology.korea_event %>
+            </div>
+          </td>
+          <td>
+            <div style="height:150px; width:200px; overflow-x:scroll;">
+              <%= chronology.china_event %>
+            </div>
+          </td>
+          <td>
+            <div style="height:150px; width:200px; overflow-x:scroll;">
+              <%= chronology.other_event %>
+            </div>
+          </td>
+          <td>
+            <div>
+              <%= link_to "編集", "chronologies/#{chronology.id}/edit", class: 'waves-effect waves-light btn brown' %>
+            </div>
+            <div>
+              <%= link_to "削除", "chronologies/#{chronology.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+            </div>
           </td>
         </tr>
       <% end %>
@@ -37,3 +58,4 @@
   </tbody>
 </table>
 <%= paginate @chronologies %>
+</div>
