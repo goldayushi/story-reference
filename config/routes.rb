@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'episodes/index'
-  get 'episodes/new'
-  get 'episodes/create'
+  get 'episodes', to: 'episodes#index'
+  get 'episodes/new', to: 'episodes#new'
+  post 'episodes', to: 'episodes#create'
   get 'episodes/show'
   get 'episodes/edit'
   get 'episodes/update'

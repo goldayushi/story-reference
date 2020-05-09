@@ -12,6 +12,16 @@ ja:
         career: '経歴'
         person: '人物'
         appearance_chapter: '初登場話'
+      episode:
+        chapter: '話'
+        title: 'タイトル'
+        overview: '概要'
+        content: '内容'
+        set: '舞台'
+        keyword: 'キーワード'
+        keyitem: 'キーアイテム'
+        division: '区分'
+        year: '西暦'
   helpers:
     select:
       prompt: 選択してください
