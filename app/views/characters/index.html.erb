@@ -1,9 +1,11 @@
 <div>
     <h1 class="center-align">登場人物一覧</h1>
-    <div>
+    <%= render 'characters/search' %>
+    <div class="right">
       <a class="btn-floating btn-large waves-effect waves-light brown" href="/characters/new" role="button"><i class="material-icons">add</i></a>
     </div>
 </div>
+<%= paginate @characters %>
 <table>
   <thead>
     <tr>
@@ -34,3 +36,4 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @characters %>

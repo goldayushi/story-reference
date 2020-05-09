@@ -1,0 +1,34 @@
+<div class="row">
+  <%= form_with scope: :search, url: "/characters", method: :get, local: true do |f| %>
+  <div class="row">
+    <div class="input-field col s6">
+      <%= f.label :name, '名前', class: 'active' %>
+      <%= f.text_field :name, value: @search_params[:name] %>
+    </div>
+    <div class="input-field col s6">
+      <%= f.label :role, '役割', class: 'active' %>
+      <%= f.text_field :role, value: @search_params[:role] %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.label :position, '役職', class: 'active' %>
+      <%= f.text_field :position, value: @search_params[:position] %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s6">
+      <%= f.label :countory, '国', class: 'active' %>
+      <%= f.text_field :countory, value: @search_params[:countory] %>
+    </div>
+    <div class="input-field col s6">
+      <%= f.label :birthplace, '出身地', class: 'active' %>
+      <%= f.text_field :birthplace, value: @search_params[:birthplace] %>
+    </div>
+  </div>
+  <div class="row">
+    <%= f.submit t('helpers.submit.search'), class: 'waves-effect waves-light btn brown', id: 'submit' %>
+    <input type="reset" value="クリア" class="waves-effect waves-light btn brown" id="submit" >
+  </div>
+  <% end %>
+</div>

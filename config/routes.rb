@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'episodes/destroy'
   root 'home#top'
   get 'characters', to: 'characters#index'
+  get 'characters/search', to: 'characters#search'
   get 'characters/new', to: 'characters#new'
   post 'characters', to: 'characters#create'
   get 'characters/:id', to: 'characters#show'
