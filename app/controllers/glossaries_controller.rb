@@ -1,7 +1,11 @@
 class GlossariesController < ApplicationController
   def index
-    @q = Glossary.ransack(params[:q])
-    @glossaries = @q.result(distinct: true).order(:chapter).page(params[:page]).per(20)
+    if params[:tag_name]
+      @glossaries = Glossary.tagged_with("#{params[:tag_name]}").page(params[:page]).per(20)
+    else
+      @q = Glossary.ransack(params[:q])
+      @glossaries = @q.result(distinct: true).order(:chapter).page(params[:page]).per(20)
+    end
   end
 
   def new
@@ -31,6 +35,6 @@ class GlossariesController < ApplicationController
 
   private
     def glossary_params
-      params.require(:glossary).permit(:title, :content, :chapter)
+      params.require(:glossary).permit(:title, :content, :chapter, :tag_list)
     end
 end

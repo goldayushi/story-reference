@@ -26,6 +26,12 @@
       </div>
     </div>
     <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :tag_list, 'タグ' %>
+        <%= f.text_field :tag_list, value: @glossary.tag_list.join(','), class: 'validate' %>
+      </div>
+    </div>
+    <div class="row">
       <%= f.submit '登録', class: 'btn waves-effect waves-light brown', id: 'submit' %>
     </div>
   <% end %>
