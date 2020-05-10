@@ -1,8 +1,17 @@
 <div>
-    <h1 class="center-align">用語集</h1>
-    <div class="right">
-      <a class="btn-floating btn-large waves-effect waves-light brown" href="/glossaries/new" role="button"><i class="material-icons">add</i></a>
-    </div>
+  <h1 class="center-align">用語集</h1>
+  <div class="row">
+    <%= search_form_for @q do |f| %>
+      <%= f.label :title_or_content, "Keyword" %>
+      <%= f.search_field :title_or_content_cont %>
+
+      <%= f.submit t('helpers.submit.search'), class: 'waves-effect waves-light btn brown', id: 'submit' %>
+      <%= link_to "クリア", glossaries_path, class: 'waves-effect waves-light btn brown' %>
+    <% end %>
+  </div>
+  <div class="right">
+    <a class="btn-floating btn-large waves-effect waves-light brown" href="/glossaries/new" role="button"><i class="material-icons">add</i></a>
+  </div>
 </div>
 <%= paginate @glossaries %>
 <table>

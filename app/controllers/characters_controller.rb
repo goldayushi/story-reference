@@ -2,8 +2,8 @@ class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :edit, :update, :destroy]
   
   def index
-    @search_params = character_search_params
-    @characters = Character.search(@search_params).order(id: :desc).page(params[:page]).per(10)
+    @q = Character.ransack(params[:q])
+    @characters = @q.result(distinct: true).order(:id).page(params[:page]).per(10)
   end
 
   def new
@@ -48,9 +48,5 @@ class CharactersController < ApplicationController
 
     def character_params
       params.require(:character).permit(:name, :role, :position, :countory, :birthplace, :career, :person, :appearance_chapter)
-    end
-
-    def character_search_params
-      params.fetch(:search, {}).permit(:name, :role, :position, :countory, :birthplace)
     end
 end
