@@ -1,2 +1,25 @@
-<h1>Glossaries#show</h1>
-<p>Find me in app/views/glossaries/show.html.erb</p>
+<div class="d-flex align-items-center">
+  <h1 class="center-align">詳細情報</h1>
+</div>
+<%= render 'layouts/button_show', model: @glossary, path: :glossaries_path %>
+<div class="row">
+  <table>
+    <tr>
+      <td><label>用語</label></td>
+      <td><%= @glossary.title %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>説明</label></td>
+      <td><%= @glossary.content %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>初登場話</label></td>
+      <td><%= @glossary.chapter %></td>
+    </tr>
+    <tr>
+      <td width="10%"><label>タグ</label></td>
+      <td><%= render 'layouts/tag_list', tag_list: @glossary.tag_list, path: :glossaries_path %></td>
+    </tr>
+  </table> 
+</div>
+<%= render 'layouts/button_show', model: @glossary, path: :glossaries_path %>
