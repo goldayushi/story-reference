@@ -1,0 +1,32 @@
+<div class="d-flex align-items-center">
+  <h1 class="center-align">新規作成</h1>
+</div>
+<div class="row">
+  <a><%= link_to "戻る", glossaries_path, class: 'waves-effect waves-light btn brown' %></a>
+</div>
+<div class="row">
+  <%= form_with model: @glossary, url: "/glossaries", local: true do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :title, '用語' %>
+        <%= f.text_field :title, class: 'validate' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :content, '説明' %>
+        <%= f.text_area :content, class: 'materialize-textarea', rows:20 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :chapter, '初登場話' %>
+        <%= f.number_field :chapter, class: 'validate' %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.submit '登録', class: 'btn waves-effect waves-light brown', id: 'submit' %>
+    </div>
+  <% end %>
+</div>

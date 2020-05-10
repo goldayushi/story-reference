@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'glossaries/index'
+  get 'glossaries/new'
+  get 'glossaries/create'
+  get 'glossaries/show'
+  get 'glossaries/edit'
+  get 'glossaries/update'
+  get 'glossaries/destroy'
   root 'home#top'
   resources :characters
   resources :episodes
@@ -10,4 +17,5 @@ Rails.application.routes.draw do
   #patch 'episodes/:id', to: 'episodes#update'
   #delete 'episodes/:id', to: 'episodes#destroy'
   resources :chronologies
+  resources :glossaries
 end

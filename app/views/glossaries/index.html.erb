@@ -1,0 +1,38 @@
+<div>
+    <h1 class="center-align">用語集</h1>
+    <div class="right">
+      <a class="btn-floating btn-large waves-effect waves-light brown" href="/glossaries/new" role="button"><i class="material-icons">add</i></a>
+    </div>
+</div>
+<%= paginate @glossaries %>
+<table>
+  <thead>
+    <tr>
+      <th>用語</th>
+      <th style="width:40%;">説明</th>
+      <th style="width:15%;">初登場話</th>
+      <th>処理</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @glossaries.length == 0 %>
+      対象のデータはありません。
+    <% else %>  
+      <% @glossaries.each do |glossary| %>
+        <tr>
+          <td><%= glossary.title %></td>
+          <td style="width:400px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap;">
+            <%= glossary.content %>
+          </td>
+          <td><%= glossary.chapter %></td>
+          <td>
+            <%= link_to "詳細", "glossaries/#{glossary.id}", class: 'waves-effect waves-light btn brown' %>
+            <%= link_to "編集", "glossaries/#{glossary.id}/edit", class: 'waves-effect waves-light btn brown' %>
+            <%= link_to "削除", "glossaries/#{glossary.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @glossaries %>
