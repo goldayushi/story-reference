@@ -2,10 +2,10 @@ class GlossariesController < ApplicationController
   before_action :set_glossary, only: [:show, :edit, :update, :destroy]
 
   def index
+    @q = Glossary.ransack(params[:q])
     if params[:tag_name]
       @glossaries = Glossary.tagged_with("#{params[:tag_name]}").page(params[:page]).per(20)
     else
-      @q = Glossary.ransack(params[:q])
       @glossaries = @q.result(distinct: true).order(:chapter).page(params[:page]).per(20)
     end
   end

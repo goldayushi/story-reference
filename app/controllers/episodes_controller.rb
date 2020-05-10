@@ -3,7 +3,11 @@ class EpisodesController < ApplicationController
   
   def index
     @q = Episode.ransack(params[:q])
-    @episodes = @q.result(distinct: true).order(:chapter).page(params[:page]).per(10)
+    if params[:tag_name]
+      @episodes = Episode.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+    else
+      @episodes = @q.result(distinct: true).order(:chapter).page(params[:page]).per(10)
+    end
   end
 
   def new
@@ -47,6 +51,6 @@ class EpisodesController < ApplicationController
     end
     
     def episode_params
-      params.require(:episode).permit(:chapter, :title, :overview, :content, :set, :keyword, :keyitem, :division, :year)
+      params.require(:episode).permit(:chapter, :title, :overview, :content, :set, :keyword, :keyitem, :division, :year, :tag_list)
     end
 end

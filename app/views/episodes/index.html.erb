@@ -13,6 +13,7 @@
       <th>概要</th>
       <th>区分</th>
       <th><%= sort_link(@q, :year, "西暦") %></th>
+      <th>タグ</th>
       <th>処理</th>
     </tr>
   </thead>
@@ -27,6 +28,7 @@
           <td><%= episode.overview %></td>
           <td><%= episode.division %></td>
           <td><%= episode.year %></td>
+          <td><%= render 'layouts/tag_list', tag_list: episode.tag_list, path: :episodes_path %></td>
           <td>
             <%= link_to "詳細", "episodes/#{episode.id}", class: 'waves-effect waves-light btn brown' %>
             <%= link_to "編集", "episodes/#{episode.id}/edit", class: 'waves-effect waves-light btn brown' %>
@@ -38,3 +40,6 @@
   </tbody>
 </table>
 <%= paginate @episodes %>
+<div class="row right">
+  <%= link_to "タグ絞り込みクリア", episodes_path %>
+</div>

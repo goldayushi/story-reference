@@ -23,8 +23,8 @@
       <td colspan="3"><%= @episode.set %></td>
     </tr>
     <tr>
-      <td width="10%"><label>キーワード</label></td>
-      <td><%= @episode.keyword %></td>
+      <td width="10%"><label>タグ</label></td>
+      <td><%= render 'layouts/tag_list', tag_list: @episode.tag_list, path: :episodes_path %></td>
       <td width="15%"><label>キーアイテム</label></td>
       <td><%= @episode.keyitem %></td>
     </tr>
