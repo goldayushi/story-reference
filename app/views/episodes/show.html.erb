@@ -1,7 +1,7 @@
 <div class="d-flex align-items-center">
   <h1 class="center-align">詳細情報</h1>
 </div>
-<%= render 'episodes/button_show' %>
+<%= render 'layouts/button_show', model: @episode, path: :episodes_path %>
 <div class="row">
   <table>
     <tr>
@@ -36,4 +36,4 @@
     </tr>
   </table> 
 </div>
-<%= render 'episodes/button_show' %>
+<%= render 'layouts/button_show', model: @episode, path: :episodes_path %>
