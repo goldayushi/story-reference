@@ -5,7 +5,7 @@
   </div>
 </div>
 <%= paginate @chronologies %>
-<table width="1200" class="responsive-table">
+<table class="responsive-table">
   <thead>
     <tr>
       <th><%= sort_link(@q, :year, "西暦") %></th>
@@ -24,22 +24,22 @@
         <tr>
           <td><%= chronology.year %></td>
           <td>
-            <div style="height:150px; width:200px; overflow-x:scroll;">
+            <div style="max-height:150px; width:200px; overflow-x:scroll;">
               <%= chronology.japan_event %>
             </div>
           </td>
           <td>
-            <div style="height:150px; width:200px; overflow-x:scroll;">
+            <div style="max-height:150px; width:200px; overflow-x:scroll;">
               <%= chronology.korea_event %>
             </div>
           </td>
           <td>
-            <div style="height:150px; width:200px; overflow-x:scroll;">
+            <div style="max-height:150px; width:200px; overflow-x:scroll;">
               <%= chronology.china_event %>
             </div>
           </td>
           <td>
-            <div style="height:150px; width:200px; overflow-x:scroll;">
+            <div style="max-height:150px; width:200px; overflow-x:scroll;">
               <%= chronology.other_event %>
             </div>
           </td>

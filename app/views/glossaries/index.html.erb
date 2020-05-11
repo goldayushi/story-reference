@@ -17,10 +17,10 @@
 <table>
   <thead>
     <tr>
-      <th>用語</th>
+      <th style="width:10%;">用語</th>
       <th style="width:40%;">説明</th>
-      <th>タグ</th>
-      <th>処理</th>
+      <th style="width:20%;">タグ</th>
+      <th style="width:20%;">処理</th>
     </tr>
   </thead>
   <tbody>
@@ -30,8 +30,10 @@
       <% @glossaries.each do |glossary| %>
         <tr>
           <td><%= glossary.title %></td>
-          <td style="width:400px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap;">
-            <%= glossary.content %>
+          <td>
+            <div style="width:400px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap;">
+              <%= glossary.content %>
+            </div>
           </td>
           <td><%= render 'layouts/tag_list', tag_list: glossary.tag_list, path: :glossaries_path %></td>
           <td>
