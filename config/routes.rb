@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  get 'glossaries/index'
-  get 'glossaries/new'
-  get 'glossaries/create'
-  get 'glossaries/show'
-  get 'glossaries/edit'
-  get 'glossaries/update'
-  get 'glossaries/destroy'
   root 'home#top'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  get 'signup', to: 'users#new'
+  post 'signup', to: 'users#create'
+  get 'users/index', to: 'users#index'
+  get 'users/:id/edit', to: 'users#edit'
   resources :characters
   resources :episodes
   #get 'episodes', to: 'episodes#index'

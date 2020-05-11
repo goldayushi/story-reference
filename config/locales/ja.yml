@@ -28,6 +28,13 @@ ja:
         korea_event: '朝鮮半島'
         china_event: '中国'
         other_event: 'その他'
+      glossary:
+        title: '用語'
+        content: '説明'
+        chapter: '初登場話'
+      user:
+        name: 'ユーザ名'
+        password: 'パスワード'
   helpers:
     select:
       prompt: 選択してください

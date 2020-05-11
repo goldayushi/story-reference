@@ -1,4 +1,5 @@
 class GlossariesController < ApplicationController
+  before_action :logged_in_user
   before_action :set_glossary, only: [:show, :edit, :update, :destroy]
 
   def index

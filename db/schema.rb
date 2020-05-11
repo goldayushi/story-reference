@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_10_044814) do
+ActiveRecord::Schema.define(version: 2020_05_11_132557) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
@@ -82,6 +82,13 @@ ActiveRecord::Schema.define(version: 2020_05_10_044814) do
     t.datetime "updated_at"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

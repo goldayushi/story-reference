@@ -1,4 +1,5 @@
 class ChronologiesController < ApplicationController
+  before_action :logged_in_user
   before_action :set_chronology, only: [:show, :edit, :update, :destroy]
   
   def index

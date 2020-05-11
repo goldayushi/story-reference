@@ -1,0 +1,17 @@
+<div class="row">
+  <h1 class="center-align">ログイン</h1>
+  <%= form_for(:session, url: '/login') do |f| %>
+  <%= render 'layouts/error_flash', model: f.object %>
+    <div class="input-field">
+      <%= f.label :name, 'ユーザ名', class: 'active' %>
+      <%= f.text_field :name %>
+      <span class="helper-text" data-error="必ず入力してください" data-success="Perfect!"></span>
+    </div>
+    <div class="input-field">
+      <%= f.label :password, 'パスワード', class: 'active' %>
+      <%= f.password_field :password %>
+      <span class="helper-text" data-error="必ず入力してください" data-success="Perfect!"></span>
+    </div>
+    <%= f.submit "ログイン", class: 'btn waves-effect waves-light brown', id: 'submit' %>
+  <% end %>
+</div>

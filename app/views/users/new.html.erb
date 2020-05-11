@@ -1,0 +1,17 @@
+<div class="row">
+  <h1 class="center-align">新規登録</h1>
+  <%= form_with model: @user, url: '/signup', local: true do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+    <div class="input-field">
+      <%= f.label :name, 'ユーザ名', class: 'active' %>
+      <%= f.text_field :name %>
+      <span class="helper-text" data-error="必ず入力してください" data-success="Perfect!"></span>
+    </div>
+    <div class="input-field">
+      <%= f.label :password, 'パスワード', class: 'active' %>
+      <%= f.password_field :password %>
+      <span class="helper-text" data-error="必ず入力してください" data-success="Perfect!"></span>
+    </div>
+    <%= f.submit "新規登録", class: 'btn waves-effect waves-light brown', id: 'submit' %>
+  <% end %>
+</div>
