@@ -1,2 +1,37 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="d-flex align-items-center">
+  <h1 class="center-align">編集</h1>
+</div>
+<div class="row">
+  <a><%= link_to "戻る", users_path, class: 'waves-effect waves-light btn brown' %></a>
+</div>
+<div class="row">
+  <%= form_with model: @user, url: "/users/#{@user.id}", local: true do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+    <div class="row">
+      <div class="col s12">
+        <label>ユーザ名</label>
+        <%= @user.name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <label for="user_admin">権限</label>
+        <div>
+          <label for="user_admin_true">
+            <%= f.radio_button :admin, true, class: 'with-gap' %>
+            <span class="black-text">管理</span>
+          </label>
+        </div>
+        <div>
+          <label for="user_admin_false">
+            <%= f.radio_button :admin, false, class: 'with-gap' %>
+            <span class="black-text">一般</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.submit '登録', class: 'btn waves-effect waves-light brown', id: 'submit' %>
+    </div>
+  <% end %>
+</div>

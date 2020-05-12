@@ -16,7 +16,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.name %></td>
-          <td>role</td>
+          <td><%= user.admin %></td>
           <td>
             <%= link_to "編集", "users/#{user.id}/edit", class: 'waves-effect waves-light btn brown' %>
             <%= link_to "削除", "users/#{user.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>

@@ -22,6 +22,14 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def update
+    if @user.update(user_params)
+      redirect_to users_path
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     if @user.destroy
       redirect_to users_path
@@ -36,6 +44,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation)
+      params.require(:user).permit(:name, :password, :password_confirmation, :admin)
     end
 end
