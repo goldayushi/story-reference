@@ -12,9 +12,15 @@
         <li class="disabled"><%= link_to "画像庫", '#' %></li>
       </ul>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><%= link_to "ログイン", login_path %></li>
+      <% if admin_user? %>
+        <li><%= link_to "ユーザ管理", users_path %></li>
+      <% end %>
+      <% if logged_in? %>
         <li><%= link_to "ログアウト", logout_path, method: :delete, data: {confirm: 'ログアウトしますか？'} %></li>
+      <% else %>
+        <li><%= link_to "ログイン", login_path %></li>
         <li><%= link_to "新規登録", signup_path, class: 'waves-effect waves-light btn' %></li>
+      <% end %>
       </ul>
     </div>
   </nav>

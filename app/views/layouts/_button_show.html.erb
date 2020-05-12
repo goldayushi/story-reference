@@ -1,5 +1,7 @@
 <div class="row right">
   <a><%= link_to "戻る", send(path), class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
-  <a><%= link_to "編集", "#{model.id}/edit", class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
-  <a><%= link_to "削除", "#{model.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+  <% if admin_user? %>
+    <a><%= link_to "編集", "#{model.id}/edit", class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+    <a><%= link_to "削除", "#{model.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown', style: 'color:white;' %></a>
+  <% end %>
 </div>

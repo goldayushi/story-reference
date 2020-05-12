@@ -1,8 +1,10 @@
 <div>
   <h1 class="center-align">年表</h1>
-  <div class="right">
-    <a class="btn-floating btn-large waves-effect waves-light brown" href="/chronologies/new" role="button"><i class="material-icons">add</i></a>
-  </div>
+  <% if admin_user? %>
+    <div class="right">
+      <a class="btn-floating btn-large waves-effect waves-light brown" href="/chronologies/new" role="button"><i class="material-icons">add</i></a>
+    </div>
+  <% end %>
 </div>
 <%= paginate @chronologies %>
 <table class="responsive-table">
@@ -13,7 +15,9 @@
       <th>朝鮮半島</th>
       <th>中国</th>
       <th>その他</th>
-      <th>処理</th>
+      <% if admin_user? %>
+        <th>処理</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -43,14 +47,12 @@
               <%= chronology.other_event %>
             </div>
           </td>
+          <% if admin_user? %>
           <td>
-            <div>
-              <%= link_to "編集", "chronologies/#{chronology.id}/edit", class: 'waves-effect waves-light btn brown' %>
-            </div>
-            <div>
-              <%= link_to "削除", "chronologies/#{chronology.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
-            </div>
+            <%= link_to "編集", "chronologies/#{chronology.id}/edit", class: 'waves-effect waves-light btn brown' %>
+            <%= link_to "削除", "chronologies/#{chronology.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
           </td>
+          <% end %>
         </tr>
       <% end %>
     <% end %>

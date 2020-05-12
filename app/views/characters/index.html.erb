@@ -1,9 +1,11 @@
 <div>
     <h1 class="center-align">登場人物一覧</h1>
     <%= render 'characters/search' %>
-    <div class="right">
-      <a class="btn-floating btn-large waves-effect waves-light brown" href="/characters/new" role="button"><i class="material-icons">add</i></a>
-    </div>
+    <% if admin_user? %>
+      <div class="right">
+        <a class="btn-floating btn-large waves-effect waves-light brown" href="/characters/new" role="button"><i class="material-icons">add</i></a>
+      </div>
+    <% end %>
 </div>
 <%= paginate @characters %>
 <table>
@@ -28,8 +30,10 @@
           <td><%= character.birthplace %></td>
           <td>
             <%= link_to "詳細", "characters/#{character.id}", class: 'waves-effect waves-light btn brown' %>
-            <%= link_to "編集", "characters/#{character.id}/edit", class: 'waves-effect waves-light btn brown' %>
-            <%= link_to "削除", "characters/#{character.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+            <% if admin_user? %>
+              <%= link_to "編集", "characters/#{character.id}/edit", class: 'waves-effect waves-light btn brown' %>
+              <%= link_to "削除", "characters/#{character.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+            <% end %>
           </td>
         </tr>
       <% end %>

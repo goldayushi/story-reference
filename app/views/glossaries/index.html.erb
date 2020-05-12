@@ -9,9 +9,11 @@
       <%= link_to "クリア", glossaries_path, class: 'waves-effect waves-light btn brown' %>
     <% end %>
   </div>
-  <div class="right">
-    <a class="btn-floating btn-large waves-effect waves-light brown" href="/glossaries/new" role="button"><i class="material-icons">add</i></a>
-  </div>
+  <% if admin_user? %>
+    <div class="right">
+      <a class="btn-floating btn-large waves-effect waves-light brown" href="/glossaries/new" role="button"><i class="material-icons">add</i></a>
+    </div>
+  <% end %>
 </div>
 <%= paginate @glossaries %>
 <table>
@@ -26,7 +28,7 @@
   <tbody>
     <% if @glossaries.length == 0 %>
       対象のデータはありません。
-    <% else %>  
+    <% else %>
       <% @glossaries.each do |glossary| %>
         <tr>
           <td><%= glossary.title %></td>
@@ -38,8 +40,10 @@
           <td><%= render 'layouts/tag_list', tag_list: glossary.tag_list, path: :glossaries_path %></td>
           <td>
             <%= link_to "詳細", "glossaries/#{glossary.id}", class: 'waves-effect waves-light btn brown' %>
-            <%= link_to "編集", "glossaries/#{glossary.id}/edit", class: 'waves-effect waves-light btn brown' %>
-            <%= link_to "削除", "glossaries/#{glossary.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+            <% if admin_user? %>
+              <%= link_to "編集", "glossaries/#{glossary.id}/edit", class: 'waves-effect waves-light btn brown' %>
+              <%= link_to "削除", "glossaries/#{glossary.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+            <% end %>
           </td>
         </tr>
       <% end %>

@@ -1,8 +1,10 @@
 <div>
   <h1 class="center-align">エピソード</h1>
-  <div class="right">
-    <a class="btn-floating btn-large waves-effect waves-light brown" href="/episodes/new" role="button"><i class="material-icons">add</i></a>
-  </div>
+  <% if admin_user? %>
+    <div class="right">
+      <a class="btn-floating btn-large waves-effect waves-light brown" href="/episodes/new" role="button"><i class="material-icons">add</i></a>
+    </div>
+  <% end %>
 </div>
 <%= paginate @episodes %>
 <table>
@@ -31,8 +33,10 @@
           <td><%= render 'layouts/tag_list', tag_list: episode.tag_list, path: :episodes_path %></td>
           <td>
             <%= link_to "詳細", "episodes/#{episode.id}", class: 'waves-effect waves-light btn brown' %>
-            <%= link_to "編集", "episodes/#{episode.id}/edit", class: 'waves-effect waves-light btn brown' %>
-            <%= link_to "削除", "episodes/#{episode.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+            <% if admin_user? %>
+              <%= link_to "編集", "episodes/#{episode.id}/edit", class: 'waves-effect waves-light btn brown' %>
+              <%= link_to "削除", "episodes/#{episode.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+            <% end %>
           </td>
         </tr>
       <% end %>
