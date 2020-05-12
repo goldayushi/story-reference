@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
-  get 'users/index', to: 'users#index'
-  get 'users/:id/edit', to: 'users#edit'
   resources :characters
   resources :episodes
   #get 'episodes', to: 'episodes#index'
@@ -18,4 +16,5 @@ Rails.application.routes.draw do
   #delete 'episodes/:id', to: 'episodes#destroy'
   resources :chronologies
   resources :glossaries
+  resources :users
 end

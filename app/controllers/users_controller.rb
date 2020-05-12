@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
+
   def index
+    @users = User.all
   end
 
   def new
@@ -18,7 +22,20 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation)
+  def destroy
+    if @user.destroy
+      redirect_to users_path
+    else
+      render 'index'
+    end
   end
+
+  private
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:name, :password, :password_confirmation)
+    end
 end
