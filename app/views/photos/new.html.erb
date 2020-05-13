@@ -1,0 +1,43 @@
+<div class="d-flex align-items-center">
+  <h1 class="center-align">新規作成</h1>
+</div>
+<div class="row">
+  <a><%= link_to "戻る", photos_path, class: 'waves-effect waves-light btn brown' %></a>
+</div>
+<div class="row">
+  <%= form_with model: @photo, url: "/photos", local: true do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :title, 'タイトル' %>
+        <%= f.text_field :title, class: 'validate' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :overview, '説明' %>
+        <%= f.text_area :overview, class: 'materialize-textarea', rows:10 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="file-field input-field col s12">
+        <div class="btn">
+          <span>ファイル選択</span>
+          <input type="file">
+        </div>
+        <div class="file-path-wrapper">
+          <%= f.file_field :image, type: 'text', class: 'file-path validate' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :tag_list, 'タグ' %>
+        <%= f.text_field :tag_list, value: @photo.tag_list.join(','), class: 'validate' %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.submit '登録', class: 'btn waves-effect waves-light brown', id: 'submit' %>
+    </div>
+  <% end %>
+</div>

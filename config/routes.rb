@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'photos/index'
+  get 'photos/new'
+  get 'photos/create'
+  get 'photos/show'
+  get 'photos/edit'
+  get 'photos/update'
+  get 'photos/destroy'
   root 'home#top'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -16,5 +23,6 @@ Rails.application.routes.draw do
   #delete 'episodes/:id', to: 'episodes#destroy'
   resources :chronologies
   resources :glossaries
+  resources :photos
   resources :users
 end

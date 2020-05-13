@@ -1,0 +1,82 @@
+<div>
+  <h1 class="center-align">画像庫</h1>
+  <% if admin_user? %>
+    <div class="right">
+      <a class="btn-floating btn-large waves-effect waves-light brown" href="/photos/new" role="button"><i class="material-icons">add</i></a>
+    </div>
+  <% end %>
+</div>
+<%= paginate @photos %>
+<div class="row">
+  <div class="col 12">
+    <% if @photos.length == 0 %>
+      <ul class="collection">
+        <li class="collection-item">
+          対象のデータがありません
+        </li>
+      </ul>
+    <% else %>
+      <% @photos.each do |photo| %>
+        <ul class="collection">
+          <li class="collection-item">
+            <div class="row">
+              <div class="col 3">
+                <p>タイトル</p>
+              </div>
+              <div class="col 9">
+                <p><%= photo.title %></p>
+              </div>
+            </div>
+          </li>
+          <li class="collection-item">
+            <div class="row">
+              <div class="col-3">
+                <p>説明</p>
+              </div>
+              <div class="col-9">
+                <p><%= photo.overview %></p>
+              </div>
+            </div>
+          </li>
+          <li class="collection-item">
+            <div class="row">
+              <div class="col-3">
+                <p>画像</p>
+              </div>
+              <div class="col-9">
+                <p><%= photo.image %></p>
+              </div>
+            </div>
+          </li>
+          <li class="collection-item">
+            <div class="row">
+              <div class="col-3">
+                <p>タグ</p>
+              </div>
+              <div class="col-9">
+                <p><%= render 'layouts/tag_list', tag_list: photo.tag_list, path: :photos_path %></p>
+              </div>
+            </div>
+          </li>
+          <li class="collection-item">
+            <div class="row">
+              <div class="col-12">
+                <div class="right">
+                  <%= link_to "詳細", "glossaries/#{glossary.id}", class: 'waves-effect waves-light btn brown' %>
+                  <% if admin_user? %>
+                    <%= link_to "編集", "glossaries/#{glossary.id}/edit", class: 'waves-effect waves-light btn brown' %>
+                    <%= link_to "削除", "glossaries/#{glossary.id}", method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'waves-effect waves-light btn brown' %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<%= paginate @photos %>
+<div class="row right">
+  <%= link_to "タグ絞り込みクリア", photos_path %>
+</div>
