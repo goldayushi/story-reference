@@ -35,7 +35,7 @@ class GlossariesController < ApplicationController
     if @glossary.update(glossary_params)
       redirect_to "/glossaries/#{@glossary.id}"
     else
-      render 'new'
+      render 'edit'
     end
   end
 

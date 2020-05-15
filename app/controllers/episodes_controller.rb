@@ -35,7 +35,7 @@ class EpisodesController < ApplicationController
     if @episode.update(episode_params)
       redirect_to "/episodes/#{@episode.id}"
     else
-      render 'new'
+      render 'edit'
     end
   end
 

@@ -31,7 +31,6 @@ class PhotosController < ApplicationController
 
   def update
     if @photo.update(photo_params)
-      #binding.pry
       redirect_to photos_path
     else
       render 'edit'

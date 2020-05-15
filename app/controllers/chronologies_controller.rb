@@ -31,7 +31,7 @@ class ChronologiesController < ApplicationController
     if @chronology.update(chronology_params)
       redirect_to chronologies_path
     else
-      render 'new'
+      render 'edit'
     end
   end
 
