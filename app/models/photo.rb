@@ -1,6 +1,8 @@
 class Photo < ApplicationRecord
-  mount_uploader :image, ImageUploader
   acts_as_taggable
-
-  validates :image, presence: true
+  
+  mount_uploader :image, ImagesUploader
+  #skip_callback :commit, :after, :remove_image!
+  
+  #validates :image, presence: true
 end

@@ -26,7 +26,8 @@
           <input type="file">
         </div>
         <div class="file-path-wrapper">
-          <%= f.file_field :image, type: 'text', class: 'file-path validate' %>
+          <%= f.file_field :image, class: 'file-path validate' %>
+          <%= f.hidden_field :image_cache %>
         </div>
       </div>
     </div>

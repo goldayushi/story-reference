@@ -50,8 +50,9 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'active_link_to'
 
 # for image uploader with AWS S3
-gem 'carrierwave'
+gem 'carrierwave', '~> 2.0'
 gem 'fog-aws'
+gem 'rmagick'
 
 gem 'dotenv-rails'
 

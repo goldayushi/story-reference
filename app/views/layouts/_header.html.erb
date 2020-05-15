@@ -9,7 +9,7 @@
         <li><%= active_link_to "エピソード", episodes_path, wrap_tag: :li %></li>
         <li><%= active_link_to "年表", chronologies_path, wrap_tag: :li %></li>
         <li><%= active_link_to "用語集", glossaries_path, wrap_tag: :li %></li>
-        <li class="disabled"><%= link_to "画像庫", '#' %></li>
+        <li><%= active_link_to "画像庫", photos_path, wrap_tag: :li %></li>
       </ul>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       <% if admin_user? %>
@@ -26,17 +26,28 @@
   </nav>
 </div>
 
-<ul class="sidenav" id="mobile-demo">
+<div class="sidenav" id="mobile-demo">
+<ul>
   <li><%= link_to "トップ", root_path %></li>
-  <li><%= active_link_to "登場人物", characters_path %></li>
-  <li><%= active_link_to "エピソード", episodes_path %></li>
-  <li><%= active_link_to "年表", chronologies_path %></li>
-  <li><%= active_link_to "用語集", glossaries_path %></li>
-  <li><%= active_link_to "画像庫", '#' %></li>
-  <li>
-    <%= link_to "ログアウト", logout_path, method: :delete, data: {confirm: 'ログアウトしますか？'} %>
-  </li>
+  <li><%= active_link_to "登場人物", characters_path, wrap_tag: :li %></li>
+  <li><%= active_link_to "エピソード", episodes_path, wrap_tag: :li %></li>
+  <li><%= active_link_to "年表", chronologies_path, wrap_tag: :li %></li>
+  <li><%= active_link_to "用語集", glossaries_path, wrap_tag: :li %></li>
+  <li><%= active_link_to "画像庫", photos_path, wrap_tag: :li %></li>
 </ul>
+
+<ul>
+  <% if admin_user? %>
+    <li><%= link_to "ユーザ管理", users_path %></li>
+  <% end %>
+  <% if logged_in? %>
+    <li><%= link_to "ログアウト", logout_path, method: :delete, data: {confirm: 'ログアウトしますか？'} %></li>
+  <% else %>
+    <li><%= link_to "ログイン", login_path %></li>
+    <li><%= link_to "新規登録", signup_path, class: 'waves-effect waves-light btn' %></li>
+  <% end %>
+</ul>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {

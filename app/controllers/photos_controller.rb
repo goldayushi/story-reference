@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
   before_action :logged_in_user
   before_action :not_admin_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_photo, only: [:edit, :update, :destroy]
 
   def index
     @q = Photo.ransack(params[:q])
@@ -24,20 +25,33 @@ class PhotosController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def edit
+    @photo.image.cache! unless @photo.image.blank?
   end
 
   def update
+    if @photo.update(photo_params)
+      #binding.pry
+      redirect_to photos_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    if @photo.destroy
+      redirect_to photos_path
+    else
+      render 'index'
+    end
   end
 
   private
+    def set_photo
+      @photo = Photo.find(params[:id])
+    end
+
     def photo_params
-      params.require(:photo).permit(:title, :overview, :image, :tag_list)
+      params.require(:photo).permit(:title, :overview, :image, :image_cache, :tag_list)
     end
 end
