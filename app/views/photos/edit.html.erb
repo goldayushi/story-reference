@@ -26,9 +26,9 @@
           <input type="file">
         </div>
         <div class="file-path-wrapper">
-          <%= f.file_field :image, type: 'text' ,class: 'file-path validate' %>
-          <%= f.hidden_field :image_cache %>
           <%= image_tag(@photo.image.to_s) if @photo.image.present? %>
+          <%= f.file_field :image, type: 'text', class: 'file-path validate' %>
+          <%= f.hidden_field :image_cache %>
         </div>
       </div>
     </div>
