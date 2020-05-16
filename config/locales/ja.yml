@@ -35,10 +35,6 @@ ja:
       user:
         name: 'ユーザ名'
         password: 'パスワード'
-      photo:
-        title: 'タイトル'
-        overview: '説明'
-        image: '画像'
   helpers:
     select:
       prompt: 選択してください
