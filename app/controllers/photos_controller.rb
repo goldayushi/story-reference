@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
     if params[:tag_name]
       @photos = Photo.tagged_with("#{params[:tag_name]}").page(params[:page]).per(5)
     else
-      @photos = @q.result(distinct: true).order(:chapter).page(params[:page]).per(5)
+      @photos = @q.result(distinct: true).order(id: "DESC").page(params[:page]).per(5)
     end
   end
 
