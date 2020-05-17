@@ -33,8 +33,8 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "ユーザ管理" do
-    let!(:login_user) { FactoryBot.create(:adm_user) }
-    let!(:edit_user) { FactoryBot.create(:normal_user) }
+    let!(:login_user) { create(:adm_user) }
+    let!(:edit_user) { create(:normal_user) }
 
     before do
       post '/login', params: { session: { name: 'kyokai', password: 'kyokaipw' } }

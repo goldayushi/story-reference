@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Sessions", type: :request do
   include SessionsHelper
 
-  let!(:user) { FactoryBot.create(:adm_user) }
+  let!(:user) { create(:adm_user) }
 
   describe "GET /login" do
     it "render new" do
@@ -35,7 +35,6 @@ RSpec.describe "Sessions", type: :request do
     end
 
     it "success delete sessions" do
-      log_in(user)
       delete '/logout'
       expect(response).to redirect_to login_path
     end
