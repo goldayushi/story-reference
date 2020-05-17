@@ -5,7 +5,7 @@ class ChronologiesController < ApplicationController
   
   def index
     @q = Chronology.ransack(params[:q])
-    @chronologies = @q.result(distinct: true).order(:chapter).page(params[:page]).per(10)
+    @chronologies = @q.result(distinct: true).order(:year).page(params[:page]).per(10)
   end
 
   def new
@@ -22,6 +22,7 @@ class ChronologiesController < ApplicationController
   end
 
   def show
+    redirect_to chronologies_path
   end
 
   def edit

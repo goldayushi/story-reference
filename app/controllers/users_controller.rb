@@ -20,6 +20,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    redirect_to users_path
+  end
+
   def edit
   end
 
