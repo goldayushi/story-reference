@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :chronologies
   resources :glossaries
   resources :users
+  get '*path', to: 'application#routing_error'
+  post '*path', to: 'application#routing_error'
 end
