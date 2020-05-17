@@ -22,6 +22,7 @@ class ChronologiesController < ApplicationController
   end
 
   def show
+    redirect_to chronologies_path
   end
 
   def edit
