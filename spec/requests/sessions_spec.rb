@@ -9,6 +9,8 @@ RSpec.describe "Sessions", type: :request do
     it "render new" do
       get '/login'
       expect(response).to have_http_status(200)
+      expect(response.body).to include '新規登録'
+      expect(response.body).to include 'ログイン'
     end
   end
 

@@ -40,22 +40,20 @@ RSpec.describe "Users", type: :request do
       post '/login', params: { session: { name: 'kyokai', password: 'kyokaipw' } }
     end
 
-    context "GET /users" do
-      it "get index" do
+    context "ユーザ一覧画面" do
+      it "GET /users" do
         get '/users'
         expect(response).to have_http_status(200)
       end
     end
 
-    context "GET /users/:id/edit" do
-      it "get edit" do
+    context "ユーザ編集" do
+      it "GET /users/:id/edit" do
         get '/users/' + edit_user.id.to_s + '/edit'
         expect(response).to have_http_status(200)
       end
-    end
 
-    context "PUT /users/:id" do
-      it "success update user" do
+      it "PUT /users/:id　success" do
         expect do
           put '/users/' + edit_user.id.to_s, params: { user: { admin: true } }
         end.to change(User, :count).by(0)
@@ -63,8 +61,8 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context "DELETE /users/:id" do
-      it "success delete user" do
+    context "ユーザ削除" do
+      it "DELETE /users/:id" do
         expect do
           delete '/users/' + edit_user.id.to_s
         end.to change(User, :count).by(-1)
@@ -81,29 +79,27 @@ RSpec.describe "Users", type: :request do
       post '/login', params: { session: { name: 'ohon', password: 'ohonpw' } }
     end
 
-    context "GET /users" do
-      it "get index" do
+    context "ユーザ一覧画面" do
+      it "GET /users" do
         get '/users'
         expect(response).to redirect_to root_path
       end
     end
 
-    context "GET /users/:id/edit" do
-      it "get edit" do
+    context "ユーザ編集" do
+      it "GET /users/:id/edit" do
         get '/users/' + edit_user.id.to_s + '/edit'
         expect(response).to redirect_to root_path
       end
-    end
 
-    context "PUT /users/:id" do
-      it "failed update user" do
+      it "PUT /users/:id" do
         put '/users/' + edit_user.id.to_s, params: { user: { admin: true } }
         expect(response).to redirect_to root_path
       end
     end
 
-    context "DELETE /users/:id" do
-      it "failed delete user" do
+    context "ユーザ削除" do
+      it "DELETE /users/:id" do
         delete '/users/' + edit_user.id.to_s
         expect(response).to redirect_to root_path
       end
