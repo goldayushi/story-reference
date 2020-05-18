@@ -32,12 +32,19 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "ユーザ管理" do
+  describe "ユーザ管理(管理権限あり)" do
     let!(:login_user) { create(:adm_user) }
     let!(:edit_user) { create(:normal_user) }
 
     before do
       post '/login', params: { session: { name: 'kyokai', password: 'kyokaipw' } }
+    end
+
+    context "GET /users" do
+      it "get index" do
+        get '/users'
+        expect(response).to have_http_status(200)
+      end
     end
 
     context "GET /users/:id/edit" do
@@ -62,6 +69,43 @@ RSpec.describe "Users", type: :request do
           delete '/users/' + edit_user.id.to_s
         end.to change(User, :count).by(-1)
         expect(response).to redirect_to users_path
+      end
+    end
+  end
+
+  describe "ユーザ管理(管理権限なし)" do
+    let!(:login_user) { create(:normal_user) }
+    let!(:edit_user) { create(:normal_user_2) }
+
+    before do
+      post '/login', params: { session: { name: 'ohon', password: 'ohonpw' } }
+    end
+
+    context "GET /users" do
+      it "get index" do
+        get '/users'
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "GET /users/:id/edit" do
+      it "get edit" do
+        get '/users/' + edit_user.id.to_s + '/edit'
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "PUT /users/delete/:id" do
+      it "failed update user" do
+        put '/users/' + edit_user.id.to_s, params: { user: { admin: true } }
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "DELETE /users/delete/:id" do
+      it "failed delete user" do
+        delete '/users/' + edit_user.id.to_s
+        expect(response).to redirect_to root_path
       end
     end
   end
