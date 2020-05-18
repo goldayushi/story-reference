@@ -54,7 +54,7 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context "PUT /users/delete/:id" do
+    context "PUT /users/:id" do
       it "success update user" do
         expect do
           put '/users/' + edit_user.id.to_s, params: { user: { admin: true } }
@@ -63,7 +63,7 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context "DELETE /users/delete/:id" do
+    context "DELETE /users/:id" do
       it "success delete user" do
         expect do
           delete '/users/' + edit_user.id.to_s
@@ -95,14 +95,14 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context "PUT /users/delete/:id" do
+    context "PUT /users/:id" do
       it "failed update user" do
         put '/users/' + edit_user.id.to_s, params: { user: { admin: true } }
         expect(response).to redirect_to root_path
       end
     end
 
-    context "DELETE /users/delete/:id" do
+    context "DELETE /users/:id" do
       it "failed delete user" do
         delete '/users/' + edit_user.id.to_s
         expect(response).to redirect_to root_path
