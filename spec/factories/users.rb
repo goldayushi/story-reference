@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :adm_user, class: User do
     name { 'kyokai' }
