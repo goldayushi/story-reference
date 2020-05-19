@@ -6,9 +6,8 @@ RSpec.describe 'Characters', type: :request do
   let!(:edit_character) { create(:character) }
 
   describe 'adminユーザ操作' do
-    let!(:login_user) { create(:adm_user) }
-
     before do
+      create(:adm_user)
       post '/login', params: { session: { name: 'kyokai', password: 'kyokaipw' } }
     end
 
@@ -98,9 +97,8 @@ RSpec.describe 'Characters', type: :request do
   end
 
   describe 'normalユーザ操作' do
-    let!(:login_user) { create(:normal_user) }
-
     before do
+      create(:normal_user)
       post '/login', params: { session: { name: 'ohon', password: 'ohonpw' } }
     end
 

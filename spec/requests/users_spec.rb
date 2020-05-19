@@ -34,10 +34,10 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'ユーザ管理(管理権限あり)' do
-    let!(:login_user) { create(:adm_user) }
     let!(:edit_user) { create(:normal_user) }
 
     before do
+      create(:adm_user)
       post '/login', params: { session: { name: 'kyokai', password: 'kyokaipw' } }
     end
 
@@ -73,10 +73,10 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'ユーザ管理(管理権限なし)' do
-    let!(:login_user) { create(:normal_user) }
     let!(:edit_user) { create(:normal_user_2) }
 
     before do
+      create(:normal_user)
       post '/login', params: { session: { name: 'ohon', password: 'ohonpw' } }
     end
 

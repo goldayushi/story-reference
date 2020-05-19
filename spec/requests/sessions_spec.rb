@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Sessions', type: :request do
   include SessionsHelper
 
-  let!(:user) { create(:adm_user) }
+  before { create(:adm_user) }
 
   describe 'GET /login' do
     it 'render new' do

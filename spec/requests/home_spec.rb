@@ -4,9 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'home', type: :request do
   describe 'adminユーザ操作' do
-    let!(:login_user) { create(:adm_user) }
-
     before do
+      create(:adm_user)
       post '/login', params: { session: { name: 'kyokai', password: 'kyokaipw' } }
     end
 
@@ -21,9 +20,8 @@ RSpec.describe 'home', type: :request do
   end
 
   describe 'normalユーザ操作' do
-    let!(:login_user) { create(:normal_user) }
-
     before do
+      create(:normal_user)
       post '/login', params: { session: { name: 'ohon', password: 'ohonpw' } }
     end
 
