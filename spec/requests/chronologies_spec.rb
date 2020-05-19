@@ -15,7 +15,7 @@ RSpec.describe 'chronologies', type: :request do
     context '年表一覧画面' do
       it 'GET /chronologies' do
         get '/chronologies'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(response.body).to include 'chronologies/new'
         expect(response.body).to include '編集'
         expect(response.body).to include '削除'
@@ -32,7 +32,7 @@ RSpec.describe 'chronologies', type: :request do
     context '年表登録' do
       it 'GET /chronologies/new' do
         get '/chronologies/new'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'POST /chronologies success' do
@@ -61,7 +61,7 @@ RSpec.describe 'chronologies', type: :request do
     context '年表編集' do
       it 'GET /chronologies/:id/edit' do
         get '/chronologies/' + edit_chronology.id.to_s + '/edit'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'PUT /chronologies/:id　success' do
@@ -99,7 +99,7 @@ RSpec.describe 'chronologies', type: :request do
     context '年表一覧画面' do
       it 'GET /chronologies' do
         get '/chronologies'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(response.body).not_to include 'chronologies/new'
         expect(response.body).not_to include '編集'
         expect(response.body).not_to include '削除'

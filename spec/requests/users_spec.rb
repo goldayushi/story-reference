@@ -9,7 +9,7 @@ RSpec.describe 'Users', type: :request do
     context 'GET /users/new' do
       it 'render new' do
         get '/users/new'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -44,14 +44,14 @@ RSpec.describe 'Users', type: :request do
     context 'ユーザ一覧画面' do
       it 'GET /users' do
         get '/users'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
 
     context 'ユーザ編集' do
       it 'GET /users/:id/edit' do
         get '/users/' + edit_user.id.to_s + '/edit'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'PUT /users/:id　success' do

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :episode, class: Episode do
+  factory :episode, class: 'Episode' do
     chapter { 1 }
     title { 'title' }
     overview { 'overview' }

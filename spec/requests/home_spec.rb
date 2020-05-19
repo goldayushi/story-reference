@@ -13,7 +13,7 @@ RSpec.describe 'home', type: :request do
     context 'トップ画面' do
       it 'GET /' do
         get '/'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(response.body).to include 'ユーザ管理'
         expect(response.body).to include 'ログアウト'
       end
@@ -30,7 +30,7 @@ RSpec.describe 'home', type: :request do
     context 'トップ画面' do
       it 'GET /' do
         get '/'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(response.body).not_to include 'ユーザ管理'
         expect(response.body).to include 'ログアウト'
       end

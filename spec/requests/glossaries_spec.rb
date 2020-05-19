@@ -15,7 +15,7 @@ RSpec.describe 'glossaries', type: :request do
     context '用語集一覧画面' do
       it 'GET /glossaries' do
         get '/glossaries'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(response.body).to include 'glossaries/new'
         expect(response.body).to include '編集'
         expect(response.body).to include '削除'
@@ -25,7 +25,7 @@ RSpec.describe 'glossaries', type: :request do
     context '用語集詳細画面' do
       it 'GET /glossaries/:id' do
         get '/glossaries/' + edit_glossary.id.to_s
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(response.body).to include '編集'
         expect(response.body).to include '削除'
       end
@@ -34,7 +34,7 @@ RSpec.describe 'glossaries', type: :request do
     context '用語集登録' do
       it 'GET /glossaries/new' do
         get '/glossaries/new'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'POST /glossaries success' do
@@ -59,7 +59,7 @@ RSpec.describe 'glossaries', type: :request do
     context '用語集編集' do
       it 'GET /glossaries/:id/edit' do
         get '/glossaries/' + edit_glossary.id.to_s + '/edit'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
 
       it 'PUT /glossaries/:id　success' do
@@ -97,7 +97,7 @@ RSpec.describe 'glossaries', type: :request do
     context '用語集一覧画面' do
       it 'GET /glossaries' do
         get '/glossaries'
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(response.body).not_to include 'glossaries/new'
         expect(response.body).not_to include '編集'
         expect(response.body).not_to include '削除'
@@ -107,7 +107,7 @@ RSpec.describe 'glossaries', type: :request do
     context '用語集詳細画面' do
       it 'GET /glossaries/:id' do
         get '/glossaries/' + edit_glossary.id.to_s
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
         expect(response.body).not_to include '編集'
         expect(response.body).not_to include '削除'
       end
