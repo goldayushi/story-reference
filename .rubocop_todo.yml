@@ -6,71 +6,9 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 4
-# Configuration parameters: IgnoredMethods.
-Metrics/AbcSize:
-  Max: 20
-
-# Offense count: 19
-# Configuration parameters: CountComments, ExcludedMethods.
-# ExcludedMethods: refine
-Metrics/BlockLength:
-  Max: 137
-
 # Offense count: 2
 # Configuration parameters: Include.
 # Include: app/helpers/**/*.rb
 Rails/HelperInstanceVariable:
   Exclude:
     - 'app/helpers/sessions_helper.rb'
-
-# Offense count: 4
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/UniqueValidationWithoutIndex:
-  Exclude:
-    - 'app/models/character.rb'
-    - 'app/models/chronology.rb'
-    - 'app/models/episode.rb'
-    - 'app/models/glossary.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle.
-# SupportedStyles: nested, compact
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'test/test_helper.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SingleLineConditionsOnly, IncludeTernaryExpressions.
-# SupportedStyles: assign_to_condition, assign_inside_condition
-Style/ConditionalAssignment:
-  Exclude:
-    - 'app/controllers/episodes_controller.rb'
-    - 'app/controllers/glossaries_controller.rb'
-
-# Offense count: 30
-Style/Documentation:
-  Enabled: false
-
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'db/migrate/20200510044810_add_missing_unique_indices.acts_as_taggable_on_engine.rb'
-    - 'spec/rails_helper.rb'
-
-# Offense count: 2
-Style/MixinUsage:
-  Exclude:
-    - 'bin/setup'
-    - 'bin/update'
-
-# Offense count: 85
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Layout/LineLength:
-  Max: 130

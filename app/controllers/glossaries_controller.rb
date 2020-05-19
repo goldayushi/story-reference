@@ -7,11 +7,11 @@ class GlossariesController < ApplicationController
 
   def index
     @q = Glossary.ransack(params[:q])
-    if params[:tag_name]
-      @glossaries = Glossary.tagged_with(params[:tag_name].to_s).page(params[:page]).per(20)
-    else
-      @glossaries = @q.result(distinct: true).order(:chapter).page(params[:page]).per(20)
-    end
+    @glossaries = if params[:tag_name]
+                    Glossary.tagged_with(params[:tag_name].to_s).page(params[:page]).per(20)
+                  else
+                    @q.result(distinct: true).order(:chapter).page(params[:page]).per(20)
+                  end
   end
 
   def new

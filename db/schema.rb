@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20_200_516_075_855) do
     t.integer 'appearance_chapter'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+
+    t.index ['name'], name: 'index_characters_on_name', unique: true
   end
 
   create_table 'chronologies', force: :cascade do |t|
@@ -34,6 +36,8 @@ ActiveRecord::Schema.define(version: 20_200_516_075_855) do
     t.text 'other_event'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+
+    t.index ['year'], name: 'index_chronologies_on_year', unique: true
   end
 
   create_table 'episodes', force: :cascade do |t|
@@ -48,6 +52,8 @@ ActiveRecord::Schema.define(version: 20_200_516_075_855) do
     t.integer 'year'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+
+    t.index ['title'], name: 'index_episodes_on_title', unique: true
   end
 
   create_table 'glossaries', force: :cascade do |t|
@@ -56,6 +62,8 @@ ActiveRecord::Schema.define(version: 20_200_516_075_855) do
     t.integer 'chapter'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+
+    t.index ['title'], name: 'index_glossaries_on_title', unique: true
   end
 
   create_table 'photos', force: :cascade do |t|
@@ -99,5 +107,7 @@ ActiveRecord::Schema.define(version: 20_200_516_075_855) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.boolean 'admin', default: false
+
+    t.index ['name'], name: 'index_users_on_name', unique: true
   end
 end

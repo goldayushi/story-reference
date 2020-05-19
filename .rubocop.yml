@@ -6,6 +6,18 @@ require:
 AsciiComments:
   Enabled: false
 
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/BlockLength:
+  Max: 137
+
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 130
+
 Rails/FilePath:
   Enabled: false
 
@@ -23,3 +35,4 @@ AllCops:
     - 'vendor/**/*'
     - 'db/schema.rb'
     - 'db/migrate/*'
+    - 'bin/*'
