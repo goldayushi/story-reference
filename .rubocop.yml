@@ -1,0 +1,14 @@
+inherit_from: .rubocop_todo.yml
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AsciiComments:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "db/schema.rb"
+    - 'db/migrate/20200510044813_change_collation_for_tag_names.acts_as_taggable_on_engine.rb'
+    - 'db/migrate/20200510044814_add_missing_indexes_on_taggings.acts_as_taggable_on_engine.rb'
