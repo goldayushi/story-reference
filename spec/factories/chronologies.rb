@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :chronology, class: Chronology do
+  factory :chronology, class: 'Chronology' do
     year { 500 }
     japan_event { 'japan_event' }
     korea_event { 'korea_event' }

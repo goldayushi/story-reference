@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include SessionsHelper
   helper_method :admin_user?, :logged_in?
@@ -11,25 +13,19 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def render_404
-      render template: 'errors/error_404', status: 404, layout: 'application', content_type: 'text/html'
-    end
+  def render_404
+    render template: 'errors/error_404', status: 404, layout: 'application', content_type: 'text/html'
+  end
 
-    def logged_in_user
-      unless logged_in?
-        redirect_to login_path
-      end
-    end
+  def logged_in_user
+    redirect_to login_path unless logged_in?
+  end
 
-    def admin_user?
-      unless @current_user.nil?
-        return @current_user.admin
-      end
-    end
+  def admin_user?
+    return @current_user.admin unless @current_user.nil?
+  end
 
-    def not_admin_user
-      unless admin_user?
-        redirect_to root_path
-      end
-    end
+  def not_admin_user
+    redirect_to root_path unless admin_user?
+  end
 end

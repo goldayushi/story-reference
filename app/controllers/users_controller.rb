@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :not_admin_user, only: [:index, :edit, :update, :destroy]
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :logged_in_user, only: %i[index edit update destroy]
+  before_action :not_admin_user, only: %i[index edit update destroy]
+  before_action :set_user, only: %i[edit update destroy]
 
   def index
     @users = User.all
@@ -24,8 +26,7 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
@@ -44,11 +45,12 @@ class UsersController < ApplicationController
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :admin)
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :password, :password_confirmation, :admin)
+  end
 end
