@@ -30,6 +30,13 @@ RSpec.describe 'Users', type: :request do
         post '/users', params: { user: { name: 'ohon', password: '' } }
         expect(response.body).to include 'パスワードを入力してください'
       end
+
+      let!(:user) { create(:normal_user_2) }
+
+      it "failed create user(exit name)" do
+        post '/users', params: { user: { name: 'moten', password: 'ohonpw' } }
+        expect(response.body).to include 'ユーザ名はすでに存在します'
+      end
     end
   end
 
