@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class CharactersController < ApplicationController
   before_action :logged_in_user
-  before_action :not_admin_user, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_character, only: [:show, :edit, :update, :destroy]
-  
+  before_action :not_admin_user, only: %i[new create edit update destroy]
+  before_action :set_character, only: %i[show edit update destroy]
+
   def index
     @q = Character.ransack(params[:q])
     @characters = @q.result(distinct: true).order(:id).page(params[:page]).per(10)
@@ -21,11 +23,9 @@ class CharactersController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @character.update(character_params)
@@ -44,11 +44,12 @@ class CharactersController < ApplicationController
   end
 
   private
-    def set_character
-      @character = Character.find(params[:id])
-    end
 
-    def character_params
-      params.require(:character).permit(:name, :role, :position, :countory, :birthplace, :career, :person, :appearance_chapter)
-    end
+  def set_character
+    @character = Character.find(params[:id])
+  end
+
+  def character_params
+    params.require(:character).permit(:name, :role, :position, :countory, :birthplace, :career, :person, :appearance_chapter)
+  end
 end

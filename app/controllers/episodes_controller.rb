@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class EpisodesController < ApplicationController
   before_action :logged_in_user
-  before_action :not_admin_user, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_episode, only: [:show, :edit, :update, :destroy]
-  
+  before_action :not_admin_user, only: %i[new create edit update destroy]
+  before_action :set_episode, only: %i[show edit update destroy]
+
   def index
     @q = Episode.ransack(params[:q])
-    if params[:tag_name]
-      @episodes = Episode.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
-    else
-      @episodes = @q.result(distinct: true).order(:chapter).page(params[:page]).per(10)
-    end
+    @episodes = if params[:tag_name]
+                  Episode.tagged_with(params[:tag_name].to_s).page(params[:page]).per(10)
+                else
+                  @q.result(distinct: true).order(:chapter).page(params[:page]).per(10)
+                end
   end
 
   def new
@@ -25,11 +27,9 @@ class EpisodesController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @episode.update(episode_params)
@@ -48,11 +48,12 @@ class EpisodesController < ApplicationController
   end
 
   private
-    def set_episode
-      @episode = Episode.find(params[:id])
-    end
-    
-    def episode_params
-      params.require(:episode).permit(:chapter, :title, :overview, :content, :set, :keyword, :keyitem, :division, :year, :tag_list)
-    end
+
+  def set_episode
+    @episode = Episode.find(params[:id])
+  end
+
+  def episode_params
+    params.require(:episode).permit(:chapter, :title, :overview, :content, :set, :keyword, :keyitem, :division, :year, :tag_list)
+  end
 end
