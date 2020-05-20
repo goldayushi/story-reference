@@ -3,7 +3,7 @@ orbs:
   ruby: circleci/ruby@0.1.2 
 
 jobs:
-  rspec:
+  rubocop:
     docker:
       - image: circleci/ruby:2.5.0-stretch-node
         environment:
