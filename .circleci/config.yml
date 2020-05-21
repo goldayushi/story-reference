@@ -1,63 +1,99 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@0.1.2 
+  ruby-orbs: sue445/ruby-orbs@1.1.2
+  heroku: circleci/heroku@1.0.1
+
+workflows:
+  build_test_and_deploy:
+    jobs:
+      - build
+      - rubocop:
+          requires: 
+            - build
+      - rspec:
+          requires:
+            - build
+            - rubocop
+      - deploy_prd:
+          requires:
+            - rspec
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_stg:
+          requires:
+            - rspec
+          filters:
+            branches:
+              only:
+                - staging
+
+executors:
+  default:
+    working_directory: ~/repo
+    docker:
+      - image: ruby:2.5.0-stretch-node
+        environment:
+          BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
 
 jobs:
+  build:
+      executor: default
+      steps:
+        - checkout
+        - bundle-install
   rubocop:
-    docker:
-      - image: circleci/ruby:2.5.0-stretch-node
-        environment:
-          RAILS_ENV: test
-    working_directory: ~/repo
+    executor: default
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run:
-          name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - preparate
       - run:
           name: Rubocop
           command: bundle exec rubocop
-  
   rspec:
-    docker:
-      - image: circleci/ruby:2.5.0-stretch-node
-        environment:
-          RAILS_ENV: test
-    working_directory: ~/repo
+    executor: default
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - run: yarn install
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - preparate
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - run:
           name: Rspec
           command: bundle exec rspec
+  deploy_prd:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          app-name: $HEROKU_APP_NAME_PRD
+          post-deploy:
+            - run:
+                command: heroku run rails db:migrate --app << parameters.app-name >>
+  deploy_stg:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          app-name: $HEROKU_APP_NAME_STG
+          post-deploy:
+            - run:
+                command: heroku run rails db:migrate --app << parameters.app-name >>
 
-workflows:
-  version: 2.1
-  rubocop_rspec:
-    jobs:
-      - rubocop
-      - rspec:
-          requires:
-            - rubocop
+commands:
+  bundle-install:
+    steps:
+      - ruby-orbs/bundle-install:
+          bundle_clean: true
+          bundle_extra_args: ''
+          bundle_gemfile: Gemfile
+          bundle_jobs: 4
+          bundle_path: vendor/bundle
+          bundle_retry: 3
+          cache_key_prefix: v1-bundle-dependencies
+          restore_bundled_with: true
+  preparate:
+    steps:
+      - checkout
+      - bundle-install
