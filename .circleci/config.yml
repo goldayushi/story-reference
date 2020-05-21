@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  ruby-orbs: sue445/ruby-orbs@1.1.2
+  ruby-orbs: sue445/ruby-orbs@1.10.8
   heroku: circleci/heroku@1.0.1
 
 workflows:
