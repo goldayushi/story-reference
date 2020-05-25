@@ -63,10 +63,14 @@ jobs:
   deploy_prd:
     executor: heroku/default
     parameters:
-      app-name: $HEROKU_APP_NAME_PRD
+      app-name: 
+        default: $HEROKU_APP_NAME_PRD
+        type: string
       post-deploy:
-        - run:
-            command: heroku run rails db:migrate --app << parameters.app-name >>
+        default:
+          - run:
+              command: heroku run rails db:migrate --app << parameters.app-name >>
+        type: steps
     steps:
       - checkout
       - heroku/install
@@ -76,10 +80,14 @@ jobs:
   deploy_stg:
     executor: heroku/default
     parameters:
-      app-name: $HEROKU_APP_NAME_STG
+      app-name: 
+        default: $HEROKU_APP_NAME_STG
+        type: string
       post-deploy:
-        - run:
-            command: heroku run rails db:migrate --app << parameters.app-name >>
+        default:
+          - run:
+              command: heroku run rails db:migrate --app << parameters.app-name >>
+        type: steps
     steps:
       - checkout
       - heroku/install
