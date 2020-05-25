@@ -62,24 +62,32 @@ jobs:
           command: bundle exec rspec
   deploy_prd:
     executor: heroku/default
+    parameters:
+      app-name:
+         default: $HEROKU_APP_NAME_PRD
+      pre-deploy:
+        - run:
+            command: heroku run rails db:migrate --app << parameters.app-name >>
     steps:
       - checkout
       - heroku/install
       - heroku/deploy-via-git:
-          app-name: $HEROKU_APP_NAME_PRD
-          post-deploy:
-            - run:
-                command: heroku run rails db:migrate --app << parameters.app-name >>
+          app-name: << parameters.app-name >>
+      - steps: << parameters.post-deploy >>
   deploy_stg:
     executor: heroku/default
+    parameters:
+      app-name:
+         default: $HEROKU_APP_NAME_STG
+      pre-deploy:
+        - run:
+            command: heroku run rails db:migrate --app << parameters.app-name >>
     steps:
       - checkout
       - heroku/install
       - heroku/deploy-via-git:
-          app-name: $HEROKU_APP_NAME_STG
-          post-deploy:
-            - run:
-                command: heroku run rails db:migrate --app << parameters.app-name >>
+          app-name: << parameters.app-name >>
+      - steps: << parameters.post-deploy >>
 
 commands:
   bundle-install:
