@@ -40,10 +40,10 @@ executors:
 
 jobs:
   build:
-      executor: default
-      steps:
-        - checkout
-        - bundle-install
+    executor: default
+    steps:
+      - checkout
+      - bundle-install
   rubocop:
     executor: default
     steps:
@@ -63,8 +63,7 @@ jobs:
   deploy_prd:
     executor: heroku/default
     parameters:
-      app-name:
-         default: $HEROKU_APP_NAME_PRD
+      app-name: $HEROKU_APP_NAME_PRD
       post-deploy:
         - run:
             command: heroku run rails db:migrate --app << parameters.app-name >>
@@ -77,8 +76,7 @@ jobs:
   deploy_stg:
     executor: heroku/default
     parameters:
-      app-name:
-         default: $HEROKU_APP_NAME_STG
+      app-name: $HEROKU_APP_NAME_STG
       post-deploy:
         - run:
             command: heroku run rails db:migrate --app << parameters.app-name >>
