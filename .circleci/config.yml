@@ -88,6 +88,9 @@ jobs:
           - run:
               command: heroku run rails db:migrate --app << parameters.app-name >>
         type: steps
+      force:
+        default: true
+        type: boolean
     steps:
       - checkout
       - heroku/install
