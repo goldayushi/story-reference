@@ -1,63 +1,118 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@0.1.2 
+  ruby-orbs: sue445/ruby-orbs@1.6.0
+  heroku: circleci/heroku@1.0.1
+
+workflows:
+  build_test_and_deploy:
+    jobs:
+      - build
+      - rubocop:
+          requires: 
+            - build
+      - rspec:
+          requires:
+            - build
+            - rubocop
+      - deploy_prd:
+          requires:
+            - build
+            - rspec
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_stg:
+          requires:
+            - build
+            - rspec
+          filters:
+            branches:
+              only:
+                - staging
+
+executors:
+  default:
+    working_directory: ~/repo
+    docker:
+      - image: ruby:2.5.0-stretch
+        environment:
+          BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
 
 jobs:
-  rubocop:
-    docker:
-      - image: circleci/ruby:2.5.0-stretch-node
-        environment:
-          RAILS_ENV: test
-    working_directory: ~/repo
+  build:
+    executor: default
     steps:
       - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run:
-          name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - bundle-install
+  rubocop:
+    executor: default
+    steps:
+      - preparate
       - run:
           name: Rubocop
           command: bundle exec rubocop
-  
   rspec:
-    docker:
-      - image: circleci/ruby:2.5.0-stretch-node
-        environment:
-          RAILS_ENV: test
-    working_directory: ~/repo
+    executor: default
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - run: yarn install
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      - preparate
+      - run: bundle exec rails db:create
+      - run: bundle exec rails db:schema:load
       - run:
           name: Rspec
           command: bundle exec rspec
+  deploy_prd:
+    executor: heroku/default
+    parameters:
+      app-name: 
+        default: $HEROKU_APP_NAME_PRD
+        type: string
+      post-deploy:
+        default:
+          - run:
+              command: heroku run rails db:migrate --app $HEROKU_APP_NAME_PRD
+        type: steps
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          app-name: << parameters.app-name >>
+      - steps: << parameters.post-deploy >>
+  deploy_stg:
+    executor: heroku/default
+    parameters:
+      app-name: 
+        default: $HEROKU_APP_NAME_STG
+        type: string
+      post-deploy:
+        default:
+          - run:
+              command: heroku run rails db:migrate --app $HEROKU_APP_NAME_STG
+        type: steps
+      force:
+        default: true
+        type: boolean
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          app-name: << parameters.app-name >>
+      - steps: << parameters.post-deploy >>
 
-workflows:
-  version: 2.1
-  rubocop_rspec:
-    jobs:
-      - rubocop
-      - rspec:
-          requires:
-            - rubocop
+commands:
+  bundle-install:
+    steps:
+      - ruby-orbs/bundle-install:
+          bundle_clean: true
+          bundle_extra_args: ''
+          bundle_gemfile: Gemfile
+          bundle_jobs: 4
+          bundle_path: vendor/bundle
+          bundle_retry: 3
+          cache_key_prefix: v1-bundle-dependencies
+          restore_bundled_with: true
+  preparate:
+    steps:
+      - checkout
+      - bundle-install
