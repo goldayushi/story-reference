@@ -16,6 +16,7 @@ workflows:
             - rubocop
       - deploy_prd:
           requires:
+            - build
             - rspec
           filters:
             branches:
