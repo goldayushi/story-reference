@@ -55,8 +55,8 @@ jobs:
     executor: default
     steps:
       - preparate
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      - run: bundle exec rails db:create
+      - run: bundle exec rails db:schema:load
       - run:
           name: Rspec
           command: bundle exec rspec
