@@ -23,6 +23,7 @@ workflows:
                 - master
       - deploy_stg:
           requires:
+            - build
             - rspec
           filters:
             branches:
