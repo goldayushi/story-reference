@@ -70,7 +70,7 @@ jobs:
       post-deploy:
         default:
           - run:
-              command: heroku run rails db:migrate --app << parameters.app-name >>
+              command: heroku run rails db:migrate --app $HEROKU_APP_NAME_PRD
         type: steps
     steps:
       - checkout
@@ -87,7 +87,7 @@ jobs:
       post-deploy:
         default:
           - run:
-              command: heroku run rails db:migrate --app << parameters.app-name >>
+              command: heroku run rails db:migrate --app $HEROKU_APP_NAME_STG
         type: steps
       force:
         default: true
